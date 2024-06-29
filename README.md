@@ -41,7 +41,7 @@ Below is an example of how to interact with the contract using `script.js`:
 let provider;
 let signer;
 let contract;
-{
+
 async function connect() {
     if (window.ethereum) {
         try {
@@ -71,9 +71,9 @@ async function connect() {
         alert('No wallet found');
     }
 }
-}
-
-## License
+```
+##License
 This project is licensed under the MIT License.
-## Author
+
+##Author
 Sakshi
