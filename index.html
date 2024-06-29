@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 and Smart Contracts Example</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Web3 and Smart Contracts Example</h1>
+        <div>
+            <button id="connectWallet">Connect Wallet</button>
+            <p id="account"></p>
+        </div>
+    </header>
+    <main>
+        <section id="profileSection">
+            <h2>Create Profile</h2>
+            <form id="profileForm">
+                <input type="text" id="profileName" placeholder="Name" required>
+                <input type="text" id="profileBio" placeholder="Bio" required>
+                <button type="submit">Create Profile</button>
+            </form>
+        </section>
+        <section id="postSection">
+            <h2>Create Post</h2>
+            <form id="postForm">
+                <textarea id="postContent" placeholder="What's on your mind?" required></textarea>
+                <button type="submit">Create Post</button>
+            </form>
+        </section>
+        <section id="postsSection">
+            <h2>Posts</h2>
+            <ul id="postList"></ul>
+        </section>
+    </main>
+
+    <!-- Include ethers.js library from CDN -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+    <!-- Include your script.js file -->
+    <script src="script.js"></script>
+
+    <script>
+        // Example script.js file
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Connect to wallet
+            const connectWalletBtn = document.getElementById('connectWallet');
+            const accountDisplay = document.getElementById('account');
+
+            connectWalletBtn.addEventListener('click', async () => {
+                // Connect to wallet logic goes here
+                // For example, using ethers.js
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                const account = accounts[0];
+                accountDisplay.textContent = `Connected Account: ${account}`;
+            });
+
+            // Create Profile form submission
+            const profileForm = document.getElementById('profileForm');
+
+            profileForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const profileName = document.getElementById('profileName').value;
+                const profileBio = document.getElementById('profileBio').value;
+
+                // Example: interact with smart contract or backend to create profile
+                console.log(`Creating profile for ${profileName} with bio: ${profileBio}`);
+
+                // Clear form inputs
+                profileForm.reset();
+            });
+
+            // Create Post form submission
+            const postForm = document.getElementById('postForm');
+            const postList = document.getElementById('postList');
+
+            postForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const postContent = document.getElementById('postContent').value;
+
+                // Example: add the post to the list
+                const li = document.createElement('li');
+                li.textContent = postContent;
+                postList.appendChild(li);
+
+                // Clear form inputs
+                postForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
